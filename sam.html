@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Make my Trip</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    * {
+      /* border: 1px solid red; */
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      /* align-items: center; */
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+    }
+
+    /* Logo */
+    .logo img {
+      height: 40px;
+    }
+
+    /* Menu */
+    .menu {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+      margin-left: 30px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #333;
+      /* Make sure the link text is the same color */
+    }
+
+    .menu-item {
+      text-align: center;
+      font-size: 12px;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .menu-item img {
+      display: block;
+      margin: 0 auto 5px;
+      width: 25px;
+      height: 25px;
+    }
+
+    /* Right-side */
+    .right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 14px;
+    }
+
+    .login-btn {
+      background: #4CAF50;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .dropdown {
+      cursor: pointer;
+      color: #0078ff;
+    }
+
+    .background-image {
+      background: url(https://imgak.mmtcdn.com/pwa_v3/pwa_commons_assets/desktop/bg5.jpg) no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .background-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .container {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 24px;
+      width: 1200px;
+      /* max-width: 1200px; */
+      position: relative;
+      z-index: 2;
+      height: 300px;
+    }
+
+    .trip-type {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .trip-type label {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    .trip-type input[type="radio"] {
+      margin-right: 8px;
+    }
+
+    .flight-box {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .flight-box>div {
+      flex: 1;
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 12px 15px;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+    }
+
+    .flight-box>div h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 2px;
+    }
+
+    .flight-box>div small {
+      font-size: 12px;
+      color: #777;
+      display: block;
+    }
+
+    .fare-options {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .fare-options button {
+      padding: 8px 18px;
+      border-radius: 20px;
+      border: 1px solid #e0e0e0;
+      background-color: #f7f7f7;
+      cursor: pointer;
+      font-size: 14px;
+      color: #555;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .fare-options .active {
+      background-color: #e0f0ff;
+      color: #0078ff;
+      border-color: #0078ff;
+      font-weight: 700;
+    }
+
+    .extras {
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .extras input[type="checkbox"] {
+      margin-right: 8px;
+    }
+
+    .search-btn {
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-btn button {
+      background: linear-gradient(to right, #007bff, #0056b3);
+      color: white;
+      border: none;
+      padding: 12px 60px;
+      font-size: 18px;
+      font-weight: 900;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .search-btn button:hover {
+      background: linear-gradient(to right, #0056b3, #003d80);
+    }
+    .nav-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
+      border-radius: 40px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 10px 20px;
+      width: fit-content;
+      margin: 40px auto;
+    }
+
+    /* Each Item */
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 0 25px;
+      border-right: 1px solid #ddd;
+    }
+
+    .nav-item:last-child {
+      border-right: none;
+    }
+
+    .nav-item img {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+    }
+
+    .nav-item h4 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: normal;
+      color: #000;
+    }
+
+    .nav-item p {
+      margin: 0;
+      font-size: 12px;
+      color: gray;
+    }
+
+    /* "new" label */
+    .new-label {
+      background: #e91e63;
+      color: #fff;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 6px;
+      margin-left: 5px;
+      font-weight: bold;
+    }
+
+    .offer-card {
+      width: 220px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      overflow: hidden;
+      font-size: 14px;
+    }
+
+    .offer-card img {
+      width: 100%;
+      display: block;
+    }
+
+    .offer-card .content {
+      margin-top: -5%;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .offer-card h4 {
+      font-size: 15px;
+      margin: 10px 0;
+      color: #000;
+    }
+
+    .offer-card a {
+      display: inline-block;
+      margin-top: 5px;
+      color: #007bff;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .offer-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* Close button */
+    .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      color: #444;
+    }
+  </style>
+  </style>
+</head>
+
+<body>
+  <nav>
+    <!-- Logo -->
+    <div class="logo">
+      <img src="https://promos.makemytrip.com/Growth/Images/3x/mmt_dt_header_icon_3x.png" alt="logo">
+    </div>
+
+    <!-- Menu -->
+    <div class="menu">
+      <div class="menu-item ">
+        <img src="C:\Users\DELL\Downloads\travelling.png" alt="Flights">
+        <a href="">Flights</a>
+
+      </div>
+      <div class="menu-item">
+        <img src="C:\Users\DELL\Downloads\5-stars.png" alt="Hotels">
+        Hotels
+      </div>
+      <div class="menu-item">
+        <img src="C:\Users\DELL\Downloads\house.png" alt="Homestays">
+        Homestays
+      </div>
+      <div class="menu-item">
+        <img src="C:\Users\DELL\Downloads\beach-umbrella.png" alt="Holiday">
+        Holiday Packages
+      </div>
+      <div class="menu-item">
+        <img src="C:\Users\DELL\Downloads\rail.png" alt="Trains">
+        Trains
+      </div>
+      <div class="menu-item">
+        <img src="C:\Users\DELL\Downloads\bus.png" alt="Buses">
+        Buses
+      </div>
+      <div class="menu-item">
+        <img src="https://cdn-icons-png.flaticon.com/128/3097/3097144.png" alt="Cabs">
+        Cabs
+      </div>
+      <div class="menu-item">
+        <img src="https://cdn-icons-png.flaticon.com/128/2085/2085255.png" alt="Visa">
+        Visa
+      </div>
+      <div class="menu-item">
+        <img src="C:\Users\DELL\Downloads\money.png" alt="forex-currency">
+        Forex Currency
+      </div>
+      <div class="menu-item">
+        <img src="C:\Users\DELL\Downloads\shield (1).png" alt="Insurance">
+        Travel Insurance
+      </div>
+    </div>
+
+    <!-- Right-side -->
+    <div class="right">
+      <div class="login-btn">Login or Create Account</div>
+      <div class="dropdown">
+        <select>
+          <option value="">Country</option>
+        </select>
+      </div>
+      <div class="dropdown">
+        <select>
+          <option value="">Language</option>
+        </select>
+      </div>
+      <div class="dropdown">
+        <select>
+          <option value="">Currency</option>
+        </select>
+      </div>
+    </div>
+  </nav>
+  <!--Section 2  -->
+  <div class="background-image">
+    <div class="container">
+      <div class="trip-type">
+        <label><input type="radio" name="trip" checked> One Way</label>
+        <label><input type="radio" name="trip"> Round Trip</label>
+        <label><input type="radio" name="trip"> Multi City</label>
+      </div>
+
+      <div class="flight-box">
+        <div>
+          <h3>DELHI</h3>
+          <small>DEL, Delhi Airport India</small>
+        </div>
+        <div>
+          <h3>BENGALURU</h3>
+          <small>BLR, Bengaluru International Airport</small>
+        </div>
+        <div>
+          <h3>Select Date</h3>
+          <input type="date">
+
+          <!-- <small>Sunday</small> -->
+        </div>
+        <div>
+          <h3>1 Traveller</h3>
+          <small>Economy/Premium Economy</small>
+        </div>
+      </div>
+
+      <div class="fare-options">
+        <button class="active"><input type="radio" name="types">Regular</button>
+        <button><input type="radio" name="types">Student</button>
+        <button><input type="radio" name="types">Senior Citizen</button>
+        <button><input type="radio" name="types">Armed Forces</button>
+        <button><input type="radio" name="types">Doctor and Nurses</button>
+      </div>
+
+      <div class="extras">
+        <label><input type="checkbox"> Add Flight Delay Protection (Get compensation for delays of 1 hour or
+          more)</label>
+      </div>
+
+      <div class="search-btn">
+        <button>SEARCH</button>
+      </div>
+    </div>
+  </div>
+  <div class="nav-container">
+    <div class="nav-item">
+      <img src="https://promos.makemytrip.com/appfest/1x/ic_home_tertiary_where2go.png" alt="Where2Go">
+      <h4>Where2Go</h4>
+    </div>
+
+    <div class="nav-item">
+      <img src="https://promos.makemytrip.com/appfest/1x/ic_home_tertiary_howtogo.png" alt="How2Go">
+      <h4>How2Go <span class="new-label">NEW</span></h4>
+    </div>
+
+    <div class="nav-item">
+      <img src="https://promos.makemytrip.com/appfest/1x/ic_home_tertiary_travelcard.png" alt="Credit Card">
+      <div>
+        <h4>MakeMyTrip ICICI Credit Card</h4>
+        <p>Never-expiring rewards & big benefits</p>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <img src="https://promos.makemytrip.com/appfest/1x/ic_home_tertiary_mice.png" alt="MICE">
+      <div>
+        <h4>MICE</h4>
+        <p>Offsites, Events & Meetings</p>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <img src="https://promos.makemytrip.com/appfest/1x/ic_home_tertiary_giftcards.png" alt="Gift Cards">
+      <h4>Gift Cards</h4>
+    </div>
+  </div>
+  <div class="offer-card">
+    <span class="close-btn">&times;</span>
+    <img src="https://promos.makemytrip.com/notification/xhdpi/tcc-final-home-bottomsheet.webp" alt="Offer Image">
+    <div class="content">
+      <h4>Limited time offer - 0 Joining Fee</h4>
+      <a href="#">VIEW BENEFITS →</a>
+    </div>
+  </div>
+
+</body>
+
+</html>

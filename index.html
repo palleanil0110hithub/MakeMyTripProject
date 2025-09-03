@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* * {
+            border: 1px solid rgb(159, 8, 154);
+        } */
+
+        body {
+            margin: 0px;
+            background-color: whitesmoke;
+            position: relative;
+
+        }
+
+        /* Robo */
+        /* Container */
+        .chat-widget {
+            position: fixed;
+            bottom: 80px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            z-index: 1000;
+        }
+
+        /* Bubble */
+        .chat-bubble {
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+            font-size: 16px;
+            font-weight: 500;
+            color: #000;
+            white-space: nowrap;
+        }
+
+        /* Video Circle */
+        .chat-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .chat-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-icon video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /*robo ends  */
+
+
+        /* header starts */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 40px;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Logo */
+        .logo img {
+            height: 30px;
+        }
+
+        /* Menu */
+        .menu {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-left: 20px;
+        }
+
+        .menu-item {
+            text-align: center;
+            font-size: 12px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .menu-item img {
+            display: block;
+            margin: 0 auto 5px;
+            width: 25px;
+            height: 25px;
+        }
+
+        /* Right-side */
+        .right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 14px;
+            width: 30%;
+        }
+
+        .login-btn {
+            background: #4CAF50;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .dropdown {
+            cursor: pointer;
+            color: #0078ff;
+        }
+
+        .section-2 {
+            font-family: Arial, sans-serif;
+            background-image: url("https://imgak.mmtcdn.com/pwa_v3/pwa_commons_assets/desktop/bg2.jpg");
+            background-repeat: no-repeat;
+            background-size: 1600px 1600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 45vh;
+            padding: 8%;
+
+        }
+
+        .container {
+
+            background-color: rgb(255, 255, 255);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            min-height: 60vh;
+
+        }
+
+        .trip-type {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .trip-type input {
+            margin-right: 5px;
+        }
+
+        .flight-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .flight-box div {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .flight-box h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .flight-box small {
+            color: #777;
+        }
+
+        .fare-options {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .fare-options button {
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            background: white;
+            font-size: 14px;
+        }
+
+        .fare-options .active {
+            background: #007bff;
+            color: white;
+            border: none;
+        }
+
+        .extras {
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-btn button {
+            background: linear-gradient(to right, #0094ff, #005eff);
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        /* header and first page ends */
+
+        /* page starts */
+        .pageheader {
+            background-color: rgb(27, 184, 111);
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            padding: 10px;
+        }
+
+        .headerlogo {
+            font-size: calc(var(--font-scale, 1) * 14px);
+            margin-right: 5px;
+            min-width: 120px;
+            display: flex;
+            width: 5%;
+        }
+
+        .selector {
+            display: flex;
+            justify-content: space-evenly;
+            width: 800px;
+        }
+
+
+
+        /* Main Container */
+        .offers-container {
+            max-width: 1200px;
+            margin: 25px 100px 40px 100px;
+            padding: 10px 40px 40px 40px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            max-height: 100vh;
+
+        }
+
+        /* Header + Tabs */
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin-right: 30px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 20px;
+            font-size: 16px;
+            flex-wrap: wrap;
+        }
+
+        .tabs a {
+            text-decoration: none;
+            color: #333;
+            padding-bottom: 5px;
+        }
+
+        .tabs a.active {
+            color: #0073ff;
+            border-bottom: 2px solid #0073ff;
+        }
+
+
+        /* Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+
+        }
+
+        /* Card */
+        .card {
+            display: flex;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 15px;
+            align-items: center;
+            min-height: 30vh;
+        }
+
+        .card img {
+            width: 80px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+
+        .card-content {
+            flex: 1;
+            width: 100%;
+
+
+        }
+
+        .card-content small {
+            font-size: 12px;
+            color: #555;
+            display: block;
+            margin-bottom: 5px;
+            width: 50%;
+        }
+
+        .card-content h3 {
+            font-size: 16px;
+            margin: 5px 0;
+            width: 70%;
+        }
+
+        .card-content p {
+            font-size: 14px;
+            color: #555;
+            margin: 5px 0 10px;
+            width: 80%;
+        }
+
+        .card-content a {
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #0073ff;
+
+        }
+
+
+        /*  */
+        .Experience-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            margin: 25px 100px 40px 100px;
+        }
+
+        .Experience-container h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .Experience-cards {
+            /* flex: 1 1 calc(50% - 20px); */
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 100%;
+            display: flex;
+            gap: 20px;
+        }
+
+        .Experience-cards img {
+            width: 100%;
+            height: 170px;
+        }
+
+        .card {
+            padding: 0px;
+        }
+
+        /* hotels Css starts */
+        .hotels {
+            display: flex;
+            padding: 40px;
+            max-width: 90%;
+            justify-content: space-between;
+            border: 10px;
+            background-color: rgba(0, 0, 0, 0);
+            margin: 25px 100px 40px 100px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .hotels h1 {
+            width: 30%;
+            font-family: Lato, sans-serif;
+        }
+
+        .hotels-images {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+
+        .hotels-images img {
+            border-radius: 15px;
+            width: 30%;
+        }
+
+        /* Footer css */
+        .footer {
+            background-color: black;
+            display: flex;
+            padding: 50px;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+
+        .socialmedia {
+            display: flex;
+            width: 20%;
+            align-items: center;
+            max-height: 100px;
+        }
+
+        .socialmedia {
+            display: flex;
+            justify-content: space-evenly;
+            margin-right: 25px;
+        }
+
+        .copyrights {
+            display: flex;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .copyrights {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- chat widget -->
+    <!-- <div class="chat-widget">
+        <div class="chat-bubble">Ask me anything</div>
+        <div class="chat-icon">
+            <video autoplay loop muted playsinline>
+                <source src="https://jsak.mmtcdn.com/pwa/platform-myra-ui/static/sub_icons/tp-new-animated-with-con.webp" >
+                
+            </video>
+        </div>
+    </div> -->
+
+    <!-- header atarts  -->
+    <nav>
+        <!-- Logo -->
+        <div class="logo">
+            <img src="https://promos.makemytrip.com/Growth/Images/3x/mmt_dt_header_icon_3x.png" alt="logo">
+        </div>
+
+        <!-- Menu -->
+        <div class="menu">
+            <div class="menu-item ">
+                <i class="fa-solid fa-plane-departure"></i>
+                <a href="">Flights</a>
+            </div>
+            <div class="menu-item">
+                <img src="./" alt="Hotels">
+                Hotels
+            </div>
+            <div class="menu-item">
+                <img src="C:\Users\DELL\Downloads\house.png" alt="Homestays">
+                Homestays
+            </div>
+            <div class="menu-item">
+                <img src="C:\Users\DELL\Downloads\beach-umbrella.png" alt="Holiday">
+                Holiday Packages
+            </div>
+            <div class="menu-item">
+                <img src="./" alt="Trains">
+                Trains
+            </div>
+            <div class="menu-item">
+                <img src="./bus.png" alt="Buses">
+                Buses
+            </div>
+            <div class="menu-item">
+                <img src="https://cdn-icons-png.flaticon.com/128/3097/3097144.png" alt="Cabs">
+                Cabs
+            </div>
+            <div class="menu-item">
+                <img src="https://cdn-icons-png.flaticon.com/128/2085/2085255.png" alt="Visa">
+                Visa
+            </div>
+            <div class="menu-item">
+                <img src="./money.png" alt="forex-currency">
+                Forex Currency
+            </div>
+            <div class="menu-item">
+                <img src="./" alt="Insurance">
+                Travel Insurance
+            </div>
+        </div>
+
+        <!-- Right-side -->
+        <div class="right">
+            <div class="login-btn">Login or Create Account</div>
+            <div class="dropdown">
+                <select>
+                    <option value="">Country</option>
+                </select>
+            </div>
+            <div class="dropdown">
+                <select>
+                    <option value="">Language</option>
+                </select>
+            </div>
+            <div class="dropdown">
+                <select>
+                    <option value="">Currency</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+    <div class="section-2">
+        <div class="container">
+            <!-- Trip Type -->
+            <div class="trip-type">
+                <label><input type="radio" name="trip" checked> One Way</label>
+                <label><input type="radio" name="trip"> Round Trip</label>
+                <label><input type="radio" name="trip"> Multi City</label>
+            </div>
+
+            <!-- Flight Details -->
+            <div class="flight-box">
+                <div>
+                    <a href="">
+                        <h3>Delhi</h3>
+                        <small>DEL, Delhi Airport India</small>
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <h3>Bengaluru</h3>
+                        <small>BLR, Bengaluru International Airport</small>
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <h3>31 Aug'25</h3>
+                        <small>Sunday</small>
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <h3>1 Traveller</h3>
+                        <small>Economy/Premium Economy</small>
+                    </a>
+                </div>
+            </div>
+            <div class="flight-box">
+                <div>
+                    <select name="" id="" style="font-weight: bold;font-size: 1.4rem;">
+                        <option value="">FROM</option>
+                        <option value="">Himachal Pradesh</option>
+                        <option value="">Benguluru </option>
+                        <option value="">Andhara Pradesh</option>
+                        <option value="">Andhara Pradesh</option>
+                    </select>
+                    
+                </div>
+                <div>
+                    <h3>Bengaluru</h3>
+                    <small>BLR, Bengaluru International Airport</small>
+                </div>
+                <div>
+                    <h3>31 Aug'25</h3>
+                    <small>Sunday</small>
+                </div>
+                <div>
+                    <h3>1 Traveller</h3>
+                </div>
+            </div>
+
+            <!-- Fare Options -->
+            <div class="fare-options">
+                <button class="active">Regular</button>
+                <button>Student</button>
+                <button>Senior Citizen</button>
+                <button>Armed Forces</button>
+                <button>Doctor and Nurses</button>
+            </div>
+
+            <!-- Extras -->
+            <div class="extras">
+                <label><input type="checkbox"> Add Flight Delay Protection (Get compensation for delays of 1 hour or
+                    more)</label>
+            </div>
+
+            <!-- Search -->
+            <div class="search-btn">
+                <button>SEARCH</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- header-End -->
+
+    <!-- Offer start -->
+    <div class="offers-container">
+
+        <!-- Header + Tabs -->
+        <div class="header">
+            <h1>Offers</h1>
+            <div class="tabs">
+                <a href="#">All Offers</a>
+                <a href="#">Bank Offers</a>
+                <a href="#">Flights</a>
+                <a href="#">Hotels</a>
+                <a href="#">Holidays</a>
+                <a href="#">Trains</a>
+                <a href="#">Cabs</a>
+                <a href="#">Bus</a>
+                <a href="#">Forex</a>
+                <a href="#">More</a>
+            </div>
+        </div>
+
+        <!-- Cards -->
+        <div class="card-grid">
+
+            <!-- Card 1 -->
+            <div class="card">
+                <img src="https://promos.makemytrip.com/notification/xhdpi//116X116-airindia-express-12122023.jpg?im=Resize=(134,134)"
+                    alt="Offer 1">
+                <div class="card-content">
+                    <small>INTL FLIGHTS</small>
+                    <h3>LIVE NOW: Pay Day Sale by Air India Express</h3>
+                    <p>with flight fares starting @ ₹1,299*</p>
+                    <a href="#">EXPLORE NOW</a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <img src="https://promos.makemytrip.com/images//Desktop-IntlSale-12Aug.jpg?im=Resize=(134,134)"
+                    alt="Offer 2">
+                <div class="card-content">
+                    <small>INTL FLIGHTS</small>
+                    <h3>LIVE NOW: Big Travel Bash</h3>
+                    <p>Up to 35% OFF* on your international trips.</p>
+                    <a href="#">BOOK NOW</a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <img src="https://promos.makemytrip.com/notification/xhdpi//116x116-akasa-29062023.jpg?im=Resize=(134,134)"
+                    alt="Offer 3">
+                <div class="card-content">
+                    <small>INTL FLIGHTS</small>
+                    <h3>LIVE NOW: Pay Day Sale by Akasa Air</h3>
+                    <p>with flight fares starting @ ₹1,399*</p>
+                    <a href="#">BOOK NOW</a>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+                <img src="https://promos.makemytrip.com/appfest/2x//Spotlight-Hotels-DT-240325.jpg?im=Resize=(134,134)"
+                    alt="Offer 4">
+                <div class="card-content">
+                    <small>DOM HOTELS</small>
+                    <h3>Hotels in Spotlight</h3>
+                    <p>Luxury Stays Chosen by Our Experts for Your Next Relaxing Break.</p>
+                    <a href="#">EXPLORE NOW</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!--offer ends  -->
+
+    <!-- Experience container starts -->
+    <div class="Experience-container">
+        <h2>Experience Flying with our Airline Partners</h2>
+        <div class="Experience-cards">
+            <div class="card">
+                <img src="https://platforms.makemytrip.com/contents/07e30964-bcda-4c81-873f-fbb283b1845f"
+                    alt="Air Asia">
+            </div>
+            <div class="card">
+                <img src="https://platforms.makemytrip.com/contents/fb0b8518-346f-4c5d-b86e-bc520d8111cf"
+                    alt="Cathay Pacific">
+            </div>
+        </div>
+    </div>
+    <!-- Experience-containner ends -->
+
+    <div class="hotels">
+        <h1>Flagship Hotel Stores on MakeMyTrip</h1>
+        <div class="hotels-images">
+            <img src="	https://platforms.makemytrip.com/contents/7300a7ec-9452-4c2b-b2aa-e8b2ebee7f12" width="20%"
+                alt="">
+            <img src="https://platforms.makemytrip.com/contents/b83273a8-c6a1-40f3-bb28-7d4a87f0d0cb" width="20%"
+                alt="">
+            <img src="https://platforms.makemytrip.com/contents/561af66f-547f-400c-9bac-e455103019a5" width="20%"
+                alt="">
+        </div>
+    </div>
+
+    <!-- Footer-starts -->
+    <div class="footer">
+        <div class="socialmedia">
+            <div class="insta">
+                <a href="http://"><i class="fa-brands fa-instagram" style="color: #fafafa;"></i></a>
+            </div>
+            <div class="twitter">
+                <a href="http://"><i class="fa-brands fa-x-twitter" style="color: #ffffff;"></i></a>
+            </div>
+            <div class="linkedlin">
+                <a href="http://"><i class="fa-brands fa-linkedin" style="color: #ffffff;"></i></a>
+            </div>
+            <div class="facebook">
+                <a href="http://"><i class="fa-brands fa-facebook-f" style="color: #fcfcfc;"></i></a>
+            </div>
+        </div>
+        <div class="copyrights">
+            <i class="fa-regular fa-copyright" style="color: #fafafa;"></i>
+            <p>2025MAKEMYTRIP PVT.LTD</p>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>
