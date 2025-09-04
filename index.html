@@ -9,70 +9,16 @@
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-         /* * {
+        /* * {
             border: 1px solid rgb(159, 8, 154);
-        } 
-         */
+        } */
+
 
         body {
             margin: 0px;
             background-color: whitesmoke;
             position: relative;
-
         }
-
-        /* Robo */
-        /* Container */
-        .chat-widget {
-            position: fixed;
-            bottom: 80px;
-            right: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            z-index: 1000;
-        }
-
-        /* Bubble */
-        .chat-bubble {
-            background: #fff;
-            padding: 10px 20px;
-            border-radius: 20px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
-            font-size: 16px;
-            font-weight: 500;
-            color: #000;
-            white-space: nowrap;
-        }
-
-        /* Video Circle */
-        .chat-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            overflow: hidden;
-            background: #fff;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: transform 0.2s ease-in-out;
-        }
-
-        .chat-icon:hover {
-            transform: scale(1.1);
-        }
-
-        .chat-icon video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /*robo ends  */
-
 
         /* header starts */
         nav {
@@ -83,8 +29,7 @@
             display: flex;
             position: sticky;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            
-           
+
         }
 
         /* Logo */
@@ -107,8 +52,8 @@
             color: #333;
             cursor: pointer;
             max-height: 10vh;
-            padding: 5px;   
-            font-size: 14px;     
+            padding: 5px;
+            font-size: 14px;
         }
 
         .menu-item a {
@@ -127,25 +72,24 @@
             align-items: center;
             font-size: 14px;
             width: 30%;
-            
-        }
-        .loginlogo{
-            display: flex;
-            justify-content: space-evenly;  
-            width:8%;
-            background-color:whitesmoke;
         }
 
-        .loginlogo img{
-            width:30px;
+        .loginlogo {
+            display: flex;
+            justify-content: space-evenly;
+            width: 8%;
+            background-color: whitesmoke;
+        }
+
+        .loginlogo img {
+            width: 30px;
             display: flex;
             align-items: center;
-        
         }
 
         .login-btn {
-            background:whitesmoke;
-            color:black;
+            background: whitesmoke;
+            color: black;
             font-weight: bold;
             cursor: pointer;
             font-size: 13px;
@@ -154,9 +98,10 @@
             margin-left: 10px;
             font-size: 13px;
         }
-         .login-btn a{
+
+        .login-btn a {
             text-decoration: none;
-         }
+        }
 
         .dropdown {
             cursor: pointer;
@@ -174,21 +119,89 @@
             justify-content: center;
             align-items: center;
             min-height: 45vh;
-            padding: 8%;
-
+            padding: 3%;
         }
 
         .container {
-
             background-color: rgb(255, 255, 255);
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             width: 100%;
             min-height: 60vh;
-
         }
 
+        /* flight select tag css starts */
+        .Dropdown-container {
+            width: 280px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .Dropdown-container>select {
+            width: 100%;
+            padding: 14px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            appearance: none;
+            /* removes default arrow */
+            background: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
+        }
+
+        option {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        optgroup {
+            font-size: 14px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        /* calender css starts */
+
+        .date-box {
+            display: inline-block;
+            border: 1px solid #ddd;
+            padding: 12px 16px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            width: 265px;
+        }
+
+        .date-label {
+            font-size: 14px;
+            min-height: 10px;
+            color: #666;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bolder;
+            font-size: 1.2rem;
+        }
+
+        input[type="date"] {
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+        }
+
+        /* calender ends */
         .trip-type {
             display: flex;
             gap: 20px;
@@ -196,22 +209,18 @@
             font-size: 14px;
         }
 
-        .trip-type input {
-            margin-right: 5px;
-        }
-
         .flight-box {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 20px;
+            border: 1px solid black;
             margin-bottom: 20px;
         }
 
         .flight-box div {
             background: #f9f9f9;
             padding: 15px;
-            border-radius: 10px;
             text-align: left;
+            border: 1px solid black;
         }
 
         .flight-box h3 {
@@ -268,6 +277,59 @@
         }
 
         /* header and first page ends */
+
+
+        /* Animation card css starts */
+        .animation-card {
+            width: 170px;
+            background: rgba(80, 136, 249, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            bottom: 1px;
+            left: 20px;
+            overflow: hidden;
+            font-size: 14px;
+            max-height: 40vh;
+
+        }
+
+        .animation-card img {
+            width: 100%;
+            display: block;
+            max-height: 25vh;
+        }
+
+        .animation-card .content {
+            margin-top: -5%;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .animation-card h4 {
+            font-size: 15px;
+            margin: 10px 0;
+            color: #000;
+        }
+
+        .animation-card a {
+            display: inline-block;
+            margin-top: 5px;
+            color: #007bff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+
+        /* Close button */
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            color: #444;
+        }
 
         /* page starts */
         .pageheader {
@@ -344,6 +406,50 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
 
+        }
+
+        /* Exlpore more section starts */
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+            border-radius: 40px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+            width: fit-content;
+            margin: 40px auto;
+        }
+
+        /* Each item */
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+            border-right: 1px solid #ddd;
+        }
+
+        .nav-item:last-child {
+            border-right: none;
+        }
+
+        .nav-item img {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
+
+        .nav-item h4 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: normal;
+            color: #000;
+        }
+
+        .nav-item p {
+            margin: 0;
+            font-size: 12px;
+            color: gray;
         }
 
         /* Card */
@@ -475,7 +581,10 @@
             padding: 50px;
             justify-content: space-between;
             align-items: center;
+        }
 
+        .socialmedia {
+            font-size: 300%;
         }
 
         .socialmedia {
@@ -505,17 +614,6 @@
 </head>
 
 <body>
-    <!-- chat widget -->
-    <!-- <div class="chat-widget">
-        <div class="chat-bubble">Ask me anything</div>
-        <div class="chat-icon">
-            <video autoplay loop muted playsinline>
-                <source src="https://jsak.mmtcdn.com/pwa/platform-myra-ui/static/sub_icons/tp-new-animated-with-con.webp" >
-                
-            </video>
-        </div>
-    </div> -->
-
     <!-- header atarts  -->
     <nav>
         <!-- Logo -->
@@ -570,7 +668,8 @@
         <!-- Right-side -->
         <div class="right">
             <div class="loginlogo">
-                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR9M-R7q2x2mQVLRFApIYjNvL8kiTbuaPfkcUphnBYG9sJET328" alt="Loginlogo">
+                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR9M-R7q2x2mQVLRFApIYjNvL8kiTbuaPfkcUphnBYG9sJET328"
+                    alt="Loginlogo">
             </div>
             <div class="login-btn"><a href="">Login or Create Account</a></div>
             <div class="dropdown">
@@ -601,52 +700,79 @@
 
             <!-- Flight Details -->
             <div class="flight-box">
-                <div>
-                    <a href="">
-                        <h3>Delhi</h3>
-                        <small>DEL, Delhi Airport India</small>
-                    </a>
+                <div class="Dropdown-container">
+                    <label for="from">From</label>
+                    <select id="from">
+                        <optgroup label="POPULAR CITIES">
+                            <option>Mumbai, India — BOM</option>
+                            <option>New Delhi, India — DEL</option>
+                            <option>Bangkok, Thailand — BKK</option>
+                            <option>Bengaluru, India — BLR</option>
+                            <option>Pune, India — PNQ</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="Dropdown-container">
+                    <label for="from">From</label>
+                    <select id="from">
+                        <optgroup label="POPULAR CITIES">
+                            <option>Mumbai, India — BOM</option>
+                            <option>New Delhi, India — DEL</option>
+                            <option>Bangkok, Thailand — BKK</option>
+                            <option>Bengaluru, India — BLR</option>
+                            <option>Pune, India — PNQ</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="date-box">
+                    <div class="date-label">
+                        Departure <span>▼</span>
+                    </div>
+                    <input type="date">
                 </div>
                 <div>
                     <a href="">
-                        <h3>Bengaluru</h3>
-                        <small>BLR, Bengaluru International Airport</small>
-                    </a>
-                </div>
-                <div>
-                    <a href="">
-                        <h3>31 Aug'25</h3>
-                        <small>Sunday</small>
-                    </a>
-                </div>
-                <div>
-                    <a href="">
-                        <h3>1 Traveller</h3>
+                        <h3>1 Traveller <span><i class="fa-solid fa-angle-down" style="color: #1860dc;"></i></span></h3><br>
                         <small>Economy/Premium Economy</small>
                     </a>
                 </div>
             </div>
             <div class="flight-box">
-                <div>
-                    <select name="" id="" style="font-weight: bold;font-size: 1.4rem;">
-                        <option value="">FROM</option>
-                        <option value="">Himachal Pradesh</option>
-                        <option value="">Benguluru </option>
-                        <option value="">Andhara Pradesh</option>
-                        <option value="">Andhara Pradesh</option>
+                <div class="Dropdown-container">
+                    <label for="from">From</label>
+                    <select id="from">
+                        <optgroup label="POPULAR CITIES">
+                            <option>Mumbai, India — BOM</option>
+                            <option>New Delhi, India — DEL</option>
+                            <option>Bangkok, Thailand — BKK</option>
+                            <option>Bengaluru, India — BLR</option>
+                            <option>Pune, India — PNQ</option>
+                        </optgroup>
                     </select>
-                    
                 </div>
-                <div>
-                    <h3>Bengaluru</h3>
-                    <small>BLR, Bengaluru International Airport</small>
+                <div class="Dropdown-container">
+                    <label for="from">From</label>
+                    <select id="from">
+                        <optgroup label="POPULAR CITIES">
+                            <option>Mumbai, India — BOM</option>
+                            <option>New Delhi, India — DEL</option>
+                            <option>Bangkok, Thailand — BKK</option>
+                            <option>Bengaluru, India — BLR</option>
+                            <option>Pune, India — PNQ</option>
+                        </optgroup>
+                    </select>
                 </div>
-                <div>
-                    <h3>31 Aug'25</h3>
-                    <small>Sunday</small>
+                <div class="date-box">
+                    <div class="date-label">
+                        Departure <span>▼</span>
+                    </div>
+                    <input type="date">
                 </div>
+
                 <div>
-                    <h3>1 Traveller</h3>
+                    <h4
+                        style="color: #0094ff; width: 83%; border: 1px solid;box-shadow: 0 4px 10px rgba(0, 120, 215, 0.3);margin-top: 30px;margin-left: 15 px;">
+                        + ADD ANOTHER CITY</h4>
                 </div>
             </div>
 
@@ -671,9 +797,50 @@
             </div>
         </div>
     </div>
-
-
     <!-- header-End -->
+
+    <!-- animation card starst -->
+    <div class="animation-card">
+        <span class="close-btn">&times;</span>
+        <img src="https://promos.makemytrip.com/notification/xhdpi/tcc-final-home-bottomsheet.webp" alt="Offer Image">
+        <div class="content">
+            <h4>Limited time offer - 0 Joining Fee</h4>
+            <a href="#">VIEW BENEFITS →</a>
+        </div>
+    </div>
+    <!-- Explore more section -->
+    <div class="nav-container">
+        <div class="nav-item">
+            <img src="https://promos.makemytrip.com/appfest/1x/ic_home_tertiary_where2go.png" alt="Where2Go">
+            <h4>Where2Go</h4>
+        </div>
+
+        <div class="nav-item">
+            <img src="https://promos.makemytrip.com/appfest/1x/ic_home_tertiary_howtogo.png" alt="How2Go">
+            <h4>How2Go <span class="new-label">NEW</span></h4>
+        </div>
+
+        <div class="nav-item">
+            <img src="https://promos.makemytrip.com/appfest/1x/ic_home_tertiary_travelcard.png" alt="Credit Card">
+            <div>
+                <h4>MakeMyTrip ICICI Credit Card</h4>
+                <p>Never-expiring rewards & big benefits</p>
+            </div>
+        </div>
+
+        <div class="nav-item">
+            <img src="https://promos.makemytrip.com/appfest/1x/ic_home_tertiary_mice.png" alt="MICE">
+            <div>
+                <h4>MICE</h4>
+                <p>Offsites, Events & Meetings</p>
+            </div>
+        </div>
+
+        <div class="nav-item">
+            <img src="https://promos.makemytrip.com/appfest/1x/ic_home_tertiary_giftcards.png" alt="Gift Cards">
+            <h4>Gift Cards</h4>
+        </div>
+    </div>
 
     <!-- Offer start -->
     <div class="offers-container">
